@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Monitoring Banjir</title>
+    <style>
+        /* Mengimpor Font dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        /* Variabel Warna */
+        :root {
+            --primary-blue: #0A66C2;
+            --light-blue: #EBF4FF;
+            --orange-cta: #FF7A00;
+            --orange-hover: #E06A00;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --bg-light: #F9FAFB;
+        }
+
+        /* Reset CSS dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Animasi scroll halus saat klik menu */
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigasi */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0;
+            position: sticky;
+            top: 0;
+            background: rgb(178, 186, 219);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 600;
+            color: var(--text-gray);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Tombol */
+        .btn-primary {
+            background-color: var(--orange-cta);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-hover);
+        }
+
+        /* Beranda / Hero Section */
+        .hero {
+            display: flex;
+            align-items:center ;
+            justify-content: center;
+            min-height: 100vh; /* full tinggi layar */
+            padding: 0;
+            background-color: var(--light-blue);
+            border-radius: 5px;
+            margin-top: 10px;
+}
+        .hero-image img {
+            width: 100%;
+            max-width: 800px; /* batas maksimal biar tidak terlalu besar */
+            height: 100%;
+            display: block;
+            margin: 10 auto; /* supaya rata tengah */
+            object-fit: cover; /* penting: gambar memenuhi area tanpa gepeng */
+            border-radius: 0 24px 24px 24px 24px 0; 
+            align-items: stretch;
+}
+
+        .hero-content {
+           flex: 1;
+           display: flex;
+    	 	 flex-direction: column;
+    		 justify-content: center; /* teks tetap di tengah */
+    		 padding: 40px;max-width: 500px;
+
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        /* Bagian Fitur & Testimoni Umum */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 48px;
+            color: var(--primary-blue);
+        }
+
+        .feature-grid, .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Testimoni */
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-info strong {
+            display: block;
+            color: var(--primary-blue);
+        }
+
+		/* --- Styling untuk Bagian Kontak --- */
+
+		#kontak {
+		padding: 60px 20px;
+		background-color: #f8f9fa; /* Warna latar belakang abu-abu sangat muda */
+		text-align: center;
+		font-family: Arial, sans-serif; /* Sesuaikan dengan font website Anda */
+		}
+
+		.section-title {
+		font-size: 32px;
+		color: #333333;
+		margin-bottom: 40px;
+		font-weight: bold;
+		}
+
+		.contact-container {
+		max-width: 1000px;
+		margin: 0 auto;
+		}
+
+		.contact-info {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		}
+
+		.info-group {
+		background-color: #ffffff;
+		padding: 30px 20px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Efek bayangan halus */
+		transition: transform 0.3s ease;
+		}
+
+		.info-group:hover {
+		transform: translateY(-5px); /* Efek melayang saat kursor diarahkan */
+		}
+
+		.info-group h3 {
+		font-size: 20px;
+		color: #0056b3; /* Warna biru untuk judul */
+		margin-bottom: 15px;
+		margin-top: 0;
+		}
+
+		.info-group p {
+		font-size: 16px;
+		color: #555555;
+		line-height: 1.6;
+		margin: 0;
+		}
+
+		.info-group a {
+		color: #007bff;
+		text-decoration: none;
+		font-weight: bold;
+		}
+
+		.info-group a:hover {
+		text-decoration: underline;
+		color: #0056b3;
+		}
+
+		/* Responsif: Tampilan untuk layar besar (Tablet & Desktop) */
+		@media (min-width: 768px) {
+		.contact-info {
+			flex-direction: row;
+			justify-content: space-between;
+			}
+		
+		.info-group {
+			flex: 1;
+			margin: 0 10px; /* Jarak antar kartu */
+			}
+		}
+    </style>
+</head>  
+<body>
+
+<header class="navbar"
+    <div class="container">
+        <nav>
+            <div class="logo">🌊 Sistem Monitoring Banjir</div>
+            <div class="nav-links">
+                <a href="#beranda">Beranda</a>
+                <a href="#fitur">Fitur</a>
+                <a href="#testimoni">Testimoni</a>
+                <a href="#kontak">Kontak</a>
+            </div>
+            <a href="#" class="btn-primary">Login</a>
+        </nav>
+    </header>
+        <header id="beranda" class="hero">
+            <div class="hero-content">
+                <h1>Jangan Tunggu Sampai Menggenang.</h1>
+                <p>Sistem peringatan dini banjir terpadu. Pantau ketinggian air secara real-time dan terima notifikasi langsung sebelum air mencapai pemukiman.</p>
+                <a href="#fitur" class="btn-primary" style="background-color: var(--primary-blue);">Pelajari Fitur</a>
+            </div>
+            <div class="hero-image">
+                <img src="gambar/tugass.jpeg" alt="Ilustrasi" style="border-radius: 5px;">
+            </div>
+        </header>
+
+        <section id="fitur" style="background-color: var(--bg-light); border-radius: 24px; padding: 60px 40px;">
+            <h2 class="section-title">Fitur Unggulan Kami</h2>
+            <div class="feature-grid">
+                <div class="card">
+                    <div style="font-size: 40px;">📊</div>
+                    <h3>Monitoring Banjir</h3>
+                    <p>Integrasi sensor cerdas di berbagai titik rawan untuk memantau tren kenaikan air</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px;">⏳</div>
+                    <h3>Durasi Banjir</h3>
+                    <p>Estimasi cerdas durasi genangan berdasarkan debit air dan cuaca, membantu Anda merencanakan waktu yang tepat untuk kembali beraktivitas.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px;">🗺️</div>
+                    <h3>jalur Evakuasi</h3>
+                    <p>Navigasi cerdas yang secara otomatis mengarahkan Anda ke zona aman terdekat melalui jalur yang bebas dari titik banjir terdalam.</p>
+                </div>
+            </div>
+        </section>
+        <section id="testimoni" style="background-color: var(--bg-light); border-radius: 20px; padding: 60px 40px;">
+            <h2 class="section-title">Apa Kata Mereka?</h2>
+            <div class="testimonial-grid">
+                <div class="card">
+                    <p>"Sangat membantu saat musim hujan. Saya bisa memindahkan barang-barang sebelum air masuk ke teras."</p>
+                    <div class="user-info">
+                        <div>
+                            <strong>Andi Pratama</strong>
+                            <span>Warga Ende</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <p>"Akurasi datanya luar biasa. Notifikasi yang masuk sangat cepat dan membantu koordinasi warga."</p>
+                    <div class="user-info">
+                        <div>
+                            <strong>Budi Santoso</strong>
+                            <span>Ketua RT 05</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <p>"Aplikasi yang wajib dimiliki bagi kita yang tinggal di area rawan genangan. Sangat user-friendly."</p>
+                    <div class="user-info">
+                        <div>
+                            <strong>Siti Aminah</strong>
+                            <span>Ibu Rumah Tangga</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		<section id="kontak">
+		<h2 class="section-title">Hubungi Kami</h2>
+		<div class="contact-container">
+			<div class="contact-info">
+				<div class="info-group">
+					<h3>Email</h3>
+					<p><a href="mailto:klementina525@gmail.com">klementina525@gmail.com</a></p>
+				</div>
+				
+				<div class="info-group">
+					<h3>Telepon / WhatsApp</h3>
+					<p><a href="https://wa.me/6281238524059">+62 81238524059</a></p>
+				</div>
+				
+				<div class="info-group">
+					<h3>Alamat</h3>
+					<p>Jln. Sam Ratulangi, Kelurahan Paupire, Kecamatan Ende Tengah, Kabupaten Ende, Kode Pos 86312</p>
+				</div>
+			</div>
+		</div>
+		</section>
+
+        <footer style="text-align: center; padding: 40px 0; color: var(--text-gray); border-top: 1px solid #eee;">
+            <p>&copy; 2026 Sistem Monitoring Banjir. Semua Hak Dilindungi.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
